@@ -35,9 +35,10 @@ function init() {
   selectorList.addEventListener('change', function(event){
     // play corresponding sound and image
     let s = event.target.value;
-
     hornImg.src = `assets/images/${s}.svg`;
     audioFile.src = `assets/audio/${s}.mp3`;
+
+    
     audioFile.load();
     
 
@@ -79,12 +80,21 @@ function init() {
     item.addEventListener('click', function(event){
       
       audioFile.play();
-       console.log(`Clicked on: ${event.target.textContent}`);
+      console.log(`Clicked on: ${event.target.textContent}`);
+      console.log(`Volume: ${audioFile.volume}`);
+      if (selectorList.value == 'party-horn'){
+        jsConfetti.addConfetti();
+      }
+
     });
   })
 
-  
-  
+  // set audio to match initial state of slider
+  audioFile.volume = 0.5;
+
+  // create confetti
+  const jsConfetti = new JSConfetti();
+    
 
 
 }
